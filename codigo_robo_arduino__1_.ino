@@ -1,94 +1,92 @@
-
-char  comando;
-//vermelho - 5 (frente (placa) lado direito)
-//verde - 7 (frente (placa) lado direito)
-//vermelho - 6 (trás (placa) lado direito)
-//amarelo - 4  (trás (placa) lado direito)
-
-//amarelo - 10 (trás (placa) lado esquerdo)
-//laranja - 11 (trás (placa) lado esquerdo)
-//roxo - 12 (frente (placa) lado esquerdo)
-//verde - 13  (frente (placa) lado esquerdo)
+char comando;
 
 void parado() {
-  digitalWrite(5,LOW);
-  digitalWrite(7,LOW);
-  digitalWrite(6,LOW);
-  digitalWrite(4,LOW);
-  
-  digitalWrite(10,LOW);
-  digitalWrite(11,LOW);
-  digitalWrite(12,LOW);
-  digitalWrite(13,LOW);
-
+  digitalWrite(5, LOW);  // frente direito
+  digitalWrite(7, LOW);  // frente direito
+  digitalWrite(6, LOW);  // trás direito
+  digitalWrite(4, LOW);  // trás direito
+  digitalWrite(12, LOW); // frente esquerdo
+  digitalWrite(13, LOW); // frente esquerdo
+  digitalWrite(10, LOW); // trás esquerdo
+  digitalWrite(11, LOW); // trás esquerdo
 }
 
 void tras() {
-  digitalWrite(8,LOW);
-  digitalWrite(9,HIGH);
-  digitalWrite(10,HIGH);
-  digitalWrite(11,LOW);
+  digitalWrite(5, LOW);  // frente direito
+  digitalWrite(7, HIGH); // frente direito
+  digitalWrite(6, HIGH); // trás direito
+  digitalWrite(4, LOW);  // trás direito
+  digitalWrite(12, LOW); // frente esquerdo
+  digitalWrite(13, HIGH);// frente esquerdo
+  digitalWrite(10, HIGH);// trás esquerdo
+  digitalWrite(11, LOW); // trás esquerdo
 }
 
 void frente() {
-  digitalWrite(8,HIGH);
-  digitalWrite(9,LOW);
-  digitalWrite(10,LOW);
-  digitalWrite(11,HIGH);
+  digitalWrite(5, HIGH); // frente direito
+  digitalWrite(7, LOW);  // frente direito
+  digitalWrite(6, LOW);  // trás direito
+  digitalWrite(4, HIGH); // trás direito
+  digitalWrite(12, HIGH);// frente esquerdo
+  digitalWrite(13, LOW); // frente esquerdo
+  digitalWrite(10, LOW); // trás esquerdo
+  digitalWrite(11, HIGH);// trás esquerdo
 }
 
 void direita() {
-  digitalWrite(8,LOW);
-  digitalWrite(9,HIGH);
-  digitalWrite(10,LOW);
-  digitalWrite(11,HIGH);
+  digitalWrite(5, LOW);  // frente direito
+  digitalWrite(7, HIGH); // frente direito
+  digitalWrite(6, LOW);  // trás direito
+  digitalWrite(4, HIGH); // trás direito
+  digitalWrite(12, HIGH);// frente esquerdo
+  digitalWrite(13, LOW); // frente esquerdo
+  digitalWrite(10, HIGH);// trás esquerdo
+  digitalWrite(11, LOW); // trás esquerdo
 }
 
 void esquerda() {
-  digitalWrite(8,HIGH);
-  digitalWrite(9,LOW);
-  digitalWrite(10,HIGH);
-  digitalWrite(11,LOW);
+  digitalWrite(5, HIGH); // frente direito
+  digitalWrite(7, LOW);  // frente direito
+  digitalWrite(6, HIGH); // trás direito
+  digitalWrite(4, LOW);  // trás direito
+  digitalWrite(12, LOW); // frente esquerdo
+  digitalWrite(13, HIGH);// frente esquerdo
+  digitalWrite(10, LOW); // trás esquerdo
+  digitalWrite(11, HIGH);// trás esquerdo
 }
 
-void setup()
-{
-comando = 'P';
+void setup() {
+  comando = 'P';
   Serial.begin(9600);
 
-pinMode(8, OUTPUT);
-pinMode(9, OUTPUT);
-pinMode(10, OUTPUT);
-pinMode(11, OUTPUT);
+  pinMode(5, OUTPUT); // frente direito
+  pinMode(7, OUTPUT); // frente direito
+  pinMode(6, OUTPUT); // trás direito
+  pinMode(4, OUTPUT); // trás direito
+  pinMode(12, OUTPUT);// frente esquerdo
+  pinMode(13, OUTPUT);// frente esquerdo
+  pinMode(10, OUTPUT);// trás esquerdo
+  pinMode(11, OUTPUT);// trás esquerdo
 }
 
-
-void loop()
-{
-
-    if (Serial.available()) {
-      comando = (Serial.read());
-
-    }
-    if (comando == 'P') {
-      parado();
-
-    }
-    if (comando == 'F') {
-      frente();
-
-    }
-    if (comando == 'T') {
-      tras();
-
-    }
-    if (comando == 'D') {
-      direita();
-
-    }
-    if (comando == 'E') {
-      esquerda();
-
-    }
-
+void loop() {
+  if (Serial.available()) {
+    comando = (Serial.read());
+  }
+  
+  if (comando == 'P') {
+    parado();
+  }
+  if (comando == 'F') {
+    frente();
+  }
+  if (comando == 'T') {
+    tras();
+  }
+  if (comando == 'D') {
+    direita();
+  }
+  if (comando == 'E') {
+    esquerda();
+  }
 }
