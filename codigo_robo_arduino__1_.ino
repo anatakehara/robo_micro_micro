@@ -1,92 +1,100 @@
 char comando;
 
+// Mapeamento dos pinos para os motores:
+// Lado direito
+#define FRENTE_DIREITO_POSITIVO 6  // Vermelho (frente direito)
+#define FRENTE_DIREITO_NEGATIVO 7  // Verde (frente direito)
+#define TRAS_DIREITO_POSITIVO 5    // Vermelho (trás direito)
+#define TRAS_DIREITO_NEGATIVO 4    // Amarelo (trás direito)
+
+// Lado esquerdo
+#define FRENTE_ESQUERDO_POSITIVO 12 // Roxo (frente esquerdo)
+#define FRENTE_ESQUERDO_NEGATIVO 13 // Verde (frente esquerdo)
+#define TRAS_ESQUERDO_POSITIVO 10   // Amarelo (trás esquerdo)
+#define TRAS_ESQUERDO_NEGATIVO 11   // Laranja (trás esquerdo)
+
+// Função para parar todos os motores
 void parado() {
-  digitalWrite(5, LOW);  // frente direito
-  digitalWrite(7, LOW);  // frente direito
-  digitalWrite(6, LOW);  // trás direito
-  digitalWrite(4, LOW);  // trás direito
-  digitalWrite(12, LOW); // frente esquerdo
-  digitalWrite(13, LOW); // frente esquerdo
-  digitalWrite(10, LOW); // trás esquerdo
-  digitalWrite(11, LOW); // trás esquerdo
+  digitalWrite(FRENTE_DIREITO_POSITIVO, LOW);
+  digitalWrite(FRENTE_DIREITO_NEGATIVO, LOW);
+  digitalWrite(TRAS_DIREITO_POSITIVO, LOW);
+  digitalWrite(TRAS_DIREITO_NEGATIVO, LOW);
+
+  digitalWrite(FRENTE_ESQUERDO_POSITIVO, LOW);
+  digitalWrite(FRENTE_ESQUERDO_NEGATIVO, LOW);
+  digitalWrite(TRAS_ESQUERDO_POSITIVO, LOW);
+  digitalWrite(TRAS_ESQUERDO_NEGATIVO, LOW);
 }
 
+// Função para mover o robô para trás
 void tras() {
-  digitalWrite(5, LOW);  // frente direito
-  digitalWrite(7, HIGH); // frente direito
-  digitalWrite(6, HIGH); // trás direito
-  digitalWrite(4, LOW);  // trás direito
-  digitalWrite(12, LOW); // frente esquerdo
-  digitalWrite(13, HIGH);// frente esquerdo
-  digitalWrite(10, HIGH);// trás esquerdo
-  digitalWrite(11, LOW); // trás esquerdo
+  digitalWrite(FRENTE_DIREITO_POSITIVO, LOW);
+  digitalWrite(FRENTE_DIREITO_NEGATIVO, HIGH);
+  digitalWrite(TRAS_DIREITO_POSITIVO, HIGH);
+  digitalWrite(TRAS_DIREITO_NEGATIVO, LOW);
+
+  digitalWrite(FRENTE_ESQUERDO_POSITIVO, HIGH);
+  digitalWrite(FRENTE_ESQUERDO_NEGATIVO, LOW);
+  digitalWrite(TRAS_ESQUERDO_POSITIVO, HIGH);
+  digitalWrite(TRAS_ESQUERDO_NEGATIVO, LOW);
 }
 
+// Função para mover o robô para frente
 void frente() {
-  digitalWrite(5, HIGH); // frente direito
-  digitalWrite(7, LOW);  // frente direito
-  digitalWrite(6, LOW);  // trás direito
-  digitalWrite(4, HIGH); // trás direito
-  digitalWrite(12, HIGH);// frente esquerdo
-  digitalWrite(13, LOW); // frente esquerdo
-  digitalWrite(10, LOW); // trás esquerdo
-  digitalWrite(11, HIGH);// trás esquerdo
+  digitalWrite(FRENTE_DIREITO_POSITIVO, HIGH);
+  digitalWrite(FRENTE_DIREITO_NEGATIVO, LOW);
+  digitalWrite(TRAS_DIREITO_POSITIVO, LOW);
+  digitalWrite(TRAS_DIREITO_NEGATIVO, HIGH);
+
+  digitalWrite(FRENTE_ESQUERDO_POSITIVO, HIGH);
+  digitalWrite(FRENTE_ESQUERDO_NEGATIVO, LOW);
+  digitalWrite(TRAS_ESQUERDO_POSITIVO, LOW);
+  digitalWrite(TRAS_ESQUERDO_NEGATIVO, HIGH);
 }
 
+// Função para mover o robô para a direita
 void direita() {
-  digitalWrite(5, LOW);  // frente direito
-  digitalWrite(7, HIGH); // frente direito
-  digitalWrite(6, LOW);  // trás direito
-  digitalWrite(4, HIGH); // trás direito
-  digitalWrite(12, HIGH);// frente esquerdo
-  digitalWrite(13, LOW); // frente esquerdo
-  digitalWrite(10, HIGH);// trás esquerdo
-  digitalWrite(11, LOW); // trás esquerdo
+  digitalWrite(FRENTE_DIREITO_POSITIVO, LOW);
+  digitalWrite(FRENTE_DIREITO_NEGATIVO, HIGH);
+  digitalWrite(TRAS_DIREITO_POSITIVO, LOW);
+  digitalWrite(TRAS_DIREITO_NEGATIVO, HIGH);
+
+  digitalWrite(FRENTE_ESQUERDO_POSITIVO, HIGH);
+  digitalWrite(FRENTE_ESQUERDO_NEGATIVO, LOW);
+  digitalWrite(TRAS_ESQUERDO_POSITIVO, HIGH);
+  digitalWrite(TRAS_ESQUERDO_NEGATIVO, LOW);
 }
 
+// Função para mover o robô para a esquerda
 void esquerda() {
-  digitalWrite(5, HIGH); // frente direito
-  digitalWrite(7, LOW);  // frente direito
-  digitalWrite(6, HIGH); // trás direito
-  digitalWrite(4, LOW);  // trás direito
-  digitalWrite(12, LOW); // frente esquerdo
-  digitalWrite(13, HIGH);// frente esquerdo
-  digitalWrite(10, LOW); // trás esquerdo
-  digitalWrite(11, HIGH);// trás esquerdo
+  digitalWrite(FRENTE_DIREITO_POSITIVO, HIGH);
+  digitalWrite(FRENTE_DIREITO_NEGATIVO, LOW);
+  digitalWrite(TRAS_DIREITO_POSITIVO, HIGH);
+  digitalWrite(TRAS_DIREITO_NEGATIVO, LOW);
+
+  digitalWrite(FRENTE_ESQUERDO_POSITIVO, LOW);
+  digitalWrite(FRENTE_ESQUERDO_NEGATIVO, HIGH);
+  digitalWrite(TRAS_ESQUERDO_POSITIVO, LOW);
+  digitalWrite(TRAS_ESQUERDO_NEGATIVO, HIGH);
 }
 
+// Configuração inicial
 void setup() {
   comando = 'P';
   Serial.begin(9600);
 
-  pinMode(5, OUTPUT); // frente direito
-  pinMode(7, OUTPUT); // frente direito
-  pinMode(6, OUTPUT); // trás direito
-  pinMode(4, OUTPUT); // trás direito
-  pinMode(12, OUTPUT);// frente esquerdo
-  pinMode(13, OUTPUT);// frente esquerdo
-  pinMode(10, OUTPUT);// trás esquerdo
-  pinMode(11, OUTPUT);// trás esquerdo
+  pinMode(FRENTE_DIREITO_POSITIVO, OUTPUT);
+  pinMode(FRENTE_DIREITO_NEGATIVO, OUTPUT);
+  pinMode(TRAS_DIREITO_POSITIVO, OUTPUT);
+  pinMode(TRAS_DIREITO_NEGATIVO, OUTPUT);
+
+  pinMode(FRENTE_ESQUERDO_POSITIVO, OUTPUT);
+  pinMode(FRENTE_ESQUERDO_NEGATIVO, OUTPUT);
+  pinMode(TRAS_ESQUERDO_POSITIVO, OUTPUT);
+  pinMode(TRAS_ESQUERDO_NEGATIVO, OUTPUT);
 }
 
+// Loop principal para leitura dos comandos
 void loop() {
-  if (Serial.available()) {
-    comando = (Serial.read());
-  }
-  
-  if (comando == 'P') {
-    parado();
-  }
-  if (comando == 'F') {
-    frente();
-  }
-  if (comando == 'T') {
-    tras();
-  }
-  if (comando == 'D') {
-    direita();
-  }
-  if (comando == 'E') {
-    esquerda();
-  }
+  tras();
 }
