@@ -5,35 +5,40 @@
 
 char  comando;
 
-void parado() {
+void parado() 
+{
   digitalWrite(esquerdoFrente,LOW);
   digitalWrite(esquerdoTras,LOW);
   digitalWrite(direitoTras,LOW);
   digitalWrite(direitoFrente,LOW);
 }
 
-void tras() {
+void tras() 
+{
   digitalWrite(esquerdoFrente,LOW);
   digitalWrite(esquerdoTras,HIGH);
   digitalWrite(direitoTras,HIGH);
   digitalWrite(direitoFrente,LOW);
 }
 
-void frente() {
+void frente() 
+{
   digitalWrite(esquerdoFrente,HIGH);
   digitalWrite(esquerdoTras,LOW);
   digitalWrite(direitoTras,LOW);
   digitalWrite(direitoFrente,HIGH);
 }
 
-void esquerda() {
+void esquerda() 
+{
   digitalWrite(esquerdoFrente,LOW);
   digitalWrite(esquerdoTras,HIGH);
   digitalWrite(direitoTras,LOW);
   digitalWrite(direitoFrente,HIGH);
 }
 
-void direita() {
+void direita() 
+{
   digitalWrite(esquerdoFrente,HIGH);
   digitalWrite(esquerdoTras,LOW);
   digitalWrite(direitoTras,HIGH);
@@ -42,17 +47,47 @@ void direita() {
 
 void setup()
 {
-comando = 'P';
+  comando = 'P';
   Serial.begin(9600);
 
-pinMode(esquerdoFrente, OUTPUT);
-pinMode(esquerdoTras, OUTPUT);
-pinMode(direitoFrente, OUTPUT);
-pinMode(direitoTras, OUTPUT);
+  pinMode(esquerdoFrente, OUTPUT);
+  pinMode(esquerdoTras, OUTPUT);
+  pinMode(direitoFrente, OUTPUT);
+  pinMode(direitoTras, OUTPUT);
 }
 
 
 void loop()
 {
-  tras();
+
+    if (Serial.available()) 
+    {
+      comando = (Serial.read());
+    }
+
+    if (comando == 'P') 
+    {
+      parado();
+    }
+
+    if (comando == 'F') 
+    {
+      frente();
+    }
+
+    if (comando == 'B') 
+    {
+      tras();
+    }
+
+    if (comando == 'R') 
+    {
+      direita();
+    }
+
+    if (comando == 'L') 
+    {
+      
+      esquerda();
+    }
 }
